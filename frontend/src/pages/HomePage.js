@@ -10,7 +10,7 @@ export default function HomePage() {
     useEffect(() => {
         async function fetchSession() {
             try{
-                const res = await fetch("http://localhost:8090/api/auth/session", {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/session`, {
                     credentials: "include"
                 });
 
@@ -47,7 +47,7 @@ export default function HomePage() {
                 <button
                         onClick={async () => {
                             try {
-                                const res = await fetch("http://localhost:8090/api/auth/logout", {
+                                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`, {
                                     method: "POST",
                                     credentials: "include",
                                 });

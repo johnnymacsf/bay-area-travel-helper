@@ -23,7 +23,7 @@ export default function HotelDetailsPage() {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:8090/api/hotels/${hotelId}?page=${page}&pageSize=5`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/hotels/${hotelId}?page=${page}&pageSize=5`,
           { credentials: "include" }
         );
 
@@ -59,7 +59,7 @@ export default function HotelDetailsPage() {
     setAiLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:8090/api/ai/hotel/${hotelId}/pro-cons`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/ai/hotel/${hotelId}/pro-cons`,
         { credentials: "include" }
       );
 

@@ -13,7 +13,7 @@ export default function SearchHotelsPage () {
     useEffect(() => {
         async function fetchHotels() {
             try {
-                const sessionRes = await fetch("http://localhost:8090/api/auth/session", {
+                const sessionRes = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/session`, {
                     credentials: "include",
                 });
                 if (!sessionRes.ok) {
@@ -23,7 +23,7 @@ export default function SearchHotelsPage () {
                     return;
                 }
     
-                const res = await fetch(`http://localhost:8090/api/hotels?keyword=${encodeURIComponent(keyword)}&page=${page}`, {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/hotels?keyword=${encodeURIComponent(keyword)}&page=${page}`, {
                     credentials: "include"
                 });
     

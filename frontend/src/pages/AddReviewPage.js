@@ -16,7 +16,7 @@ export default function AddReviewPage(){
         setLoading(true);
 
         try{
-            const res = await fetch("http://localhost:8090/api/reviews/add", {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/reviews/add`, {
                 method: "POST",
                 credentials: "include",
                 headers: {"Content-Type": "application/json"},

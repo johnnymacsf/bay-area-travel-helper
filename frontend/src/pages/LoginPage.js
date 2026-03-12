@@ -10,7 +10,7 @@ export default function LoginPage() {
     useEffect(() => {
         async function checkSession() {
             try {
-                const res = await fetch("http://localhost:8090/api/auth/session", {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/session`, {
                     credentials: "include",
                 });
                 if(res.ok){
@@ -28,7 +28,7 @@ export default function LoginPage() {
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:8090/api/auth/login", {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 credentials: "include",
