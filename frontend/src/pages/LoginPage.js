@@ -35,7 +35,7 @@ export default function LoginPage() {
                 body: JSON.stringify({username, password}),
             });
 
-            const text = await res.text();
+            await res.text();
             if(!res.ok){
                 toast.error("Unable to login. Please try again!");
                 return;

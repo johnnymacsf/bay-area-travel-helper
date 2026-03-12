@@ -7,7 +7,6 @@ export default function SearchHotelsPage () {
     const [hotels, setHotels] = useState({});
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
     
@@ -43,7 +42,7 @@ export default function SearchHotelsPage () {
         }
     
         fetchHotels();
-    }, [keyword, page]);
+    }, [keyword, page, navigate]);
     
 
     const handleSearch = (e) => {
@@ -63,42 +62,38 @@ export default function SearchHotelsPage () {
                 <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-300">Search</button>
             </form>
 
-            {loading ? (
-                <p className="text-center">Loading hotels...</p>
-            ) : (
-                <div className="max-w-3xl mx-auto flex flex-col gap-3">
-                    {Object.entries(hotels).length === 0 && <p className="text-center">No hotels found.</p>}
+            <div className="max-w-3xl mx-auto flex flex-col gap-3">
+                {Object.entries(hotels).length === 0 && <p className="text-center">No hotels found.</p>}
 
-                    {Object.entries(hotels).map(([hotelId, name]) => (
-                        <Link
-                            key={hotelId}
-                            to={`/hotel/${hotelId}`}
-                            className="p-3 bg-white shadow rounded hover:bg-blue-50"
-                        >
-                            {name}
-                        </Link>
-                    ))}
-                    <div className="flex justify-between mt-4">
-                        <button
-                            onClick={() => setPage(Math.max(page - 1, 1))}
-                            disabled={page === 1}
-                            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
-                        >
-                            Previous
-                        </button>
+                {Object.entries(hotels).map(([hotelId, name]) => (
+                    <Link
+                        key={hotelId}
+                        to={`/hotel/${hotelId}`}
+                        className="p-3 bg-white shadow rounded hover:bg-blue-50"
+                    >
+                        {name}
+                    </Link>
+                ))}
+                <div className="flex justify-between mt-4">
+                    <button
+                        onClick={() => setPage(Math.max(page - 1, 1))}
+                        disabled={page === 1}
+                        className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
+                    >
+                        Previous
+                    </button>
 
-                        <span className="px-4 py-2">Page {page}</span>
+                    <span className="px-4 py-2">Page {page}</span>
 
-                        <button
-                            onClick={() => setPage(page + 1)}
-                            disabled={!hasNextPage}
-                            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
-                        >
-                            Next
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => setPage(page + 1)}
+                        disabled={!hasNextPage}
+                        className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
+                    >
+                        Next
+                    </button>
                 </div>
-            )}
+            </div>
         </div>
     )
 }
